@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">I want to see it</string>
+    <string name="news_button">Новинки</string>
+    <string name="in_cinema_button">В кино</string>
+    <string name="collection_button">Мои подписки</string>
+    <string name="title_activity_movies">Новинки</string>
+    <string name="movie_title">Загрузка</string>
+    <string name="movie_description">Пожалуйста, подождите</string>
+    <string name="title_section1">Раздел 1</string>
+    <string name="title_section2">Раздел 2</string>
+    <string name="title_section3">Раздел 3</string>
+    <string name="title_section_default">Раздел X</string>
+    <string name="action_settings">Настройки</string>
+    <string name="host">http://iwsi.url.ph/</string>
+
+</resources>
