@@ -19,11 +19,11 @@ import com.iwsi.R;
 
 import android.os.AsyncTask;
 
-public class DownloadMoviesList extends AsyncTask<String, Void, String> {
+public class CheckInternetConnection extends AsyncTask<String, Void, String> {
 	
 	private final MainActivity mMainActivity;
 	
-	public DownloadMoviesList(final MainActivity pMainActivity)
+	public CheckInternetConnection(final MainActivity pMainActivity)
 	{
 		mMainActivity = pMainActivity;
 	}
@@ -60,18 +60,7 @@ public class DownloadMoviesList extends AsyncTask<String, Void, String> {
 		try {
 			obj = new JSONObject(result);
         	JSONArray arr = obj.getJSONArray("movies");
-        	
-        	if(arr.length()>0)
-        	{	        	
-	        	int moviesList[] = new int[arr.length()-1];
-	        	
-	        	for(int i=0;i<arr.length()-1;i++)
-	        	{
-	        		moviesList[i] = arr.getJSONObject(i).getInt("id");
-	        	}
-	        	
-	        	mMainActivity.onMovieListLoaded(moviesList);
-        	}
+        	mMainActivity.onGoodConnection();
         	
 		} catch (JSONException e) {
 			mMainActivity.onBadConnection();

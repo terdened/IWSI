@@ -13,6 +13,10 @@
     <string name="title_section3">Раздел 3</string>
     <string name="title_section_default">Раздел X</string>
     <string name="action_settings">Настройки</string>
+    <string name="message_subscribe_text">Предупредить меня сообщением</string>
     <string name="host">http://iwsi.url.ph/</string>
-
+    <string name="title_activity_internet_connection">InternetConnectionActivity</string>
+    <string name="bad_connection">Невозможно подключиться к сети к Интернет.\nПроверьте подключение и попробуйте еще раз.</string>
+	<string name="repeat">Повторить</string>
+    
 </resources>

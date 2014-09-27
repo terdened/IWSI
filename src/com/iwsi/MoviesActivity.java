@@ -3,6 +3,7 @@ package com.iwsi;
 import java.util.LinkedList;
 import java.util.Locale;
 
+import com.iwsi.datamanager.DataManager;
 import com.iwsi.downloadmanager.DownloadFragment;
 import com.iwsi.model.MovieModel;
 
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -19,8 +21,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MoviesActivity extends ActionBarActivity {
@@ -216,6 +221,29 @@ public class MoviesActivity extends ActionBarActivity {
 				Gallery gallery = (Gallery) rootView.findViewById(R.id.gallery);
 				
 				gallery.setAdapter(new GalleryAdapter(this.getActivity(), mMovieModel.get(mPosition).mScreenshots));
+				
+				LinearLayout movieHolder = (LinearLayout) rootView.findViewById(R.id.movie_holder);
+				CheckBox messageSubscribe = new CheckBox(getActivity());
+				messageSubscribe.setText(R.string.message_subscribe_text);
+				
+				DataManager dm = new DataManager(getActivity().getSharedPreferences("com.iwsi", Context.MODE_PRIVATE));
+				messageSubscribe.setChecked(dm.isMessageSubscribed(mMovieModel.get(mPosition).mId));
+				messageSubscribe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+		            @Override
+		            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		            	DataManager dm = new DataManager(getActivity().getSharedPreferences("com.iwsi", Context.MODE_PRIVATE));
+		                if (buttonView.isChecked()) {
+		                	dm.addMessageSubscribe(mMovieModel.get(mPosition).mId);
+		                }
+		                else {
+		                	dm.removeMessageSubscribe(mMovieModel.get(mPosition).mId);
+		                }
+
+		            }
+		        });
+				
+				movieHolder.addView(messageSubscribe);
 			}
 			
 			return rootView;
